@@ -61,6 +61,9 @@
 			<input type="submit" value="submit"/>
 		</center>
 	</form>
-	<center><p><a href="logout.jsp">Logout</a></p></center>
+	<center>
+		<p><a href="studentWelcome.jsp">Back to homepage</a></p>
+		<p><a href="logout.jsp">Logout</a></p>
+	</center>
 </body>
 </html>
