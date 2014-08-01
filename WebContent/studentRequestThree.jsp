@@ -47,10 +47,26 @@
 
 	<!-- might want to change the format of the sections -->
 	
+	
+	<!-- I like this format but need to figure out how to send data to connector -->
+		<table border="1" align="center">
+			<%
+				while(rs.next()){
+					String secnum = rs.getString("secnum");
+			%>
+					<tr>
+					<td><input type="checkbox" name="section" value=<%=secnum%>><%=session.getAttribute("majorid")%> : <%=session.getAttribute("cid")%>:</td>
+					<td><%=secnum%></td>
+					</tr>
+			<%
+				}
+			%>
+		</table>
+
 		<table border="1" align="center">
 			<tr>
 				<td><%=session.getAttribute("majorid")%>: </td>
-				<td><%=session.getAttribute("cid")%>: </td></td>
+				<td><%=session.getAttribute("cid")%>: </td>
 				<td>Select Section
 					<select name="secnum">
 					<option value="select">select</option>
