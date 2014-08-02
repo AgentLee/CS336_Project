@@ -55,7 +55,7 @@
 					String secnum = rs.getString("secnum");
 			%>
 					<tr>
-					<td><input type="checkbox" name="section" value=<%=secnum%>><%=session.getAttribute("majorid")%> : <%=session.getAttribute("cid")%>:</td>
+					<td><input type="radio" name="secnum" value=<%=secnum%>><%=session.getAttribute("majorid")%> : <%=session.getAttribute("cid")%>:</td>
 					<td><%=secnum%></td>
 					</tr>
 			<%

@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ page import="java.sql.*" %>
@@ -33,9 +34,9 @@
 	<center>
 		<p><img src = "http://www.holidaylga.com/blog/wp-content/uploads/2011/12/Rutgers-R-Logo.jpg" width="100px"></p>
 		<h1 style="color:red">Rutgers Special Permission Request System</h1><hr width="80%">
-		<h2>Welcome!</h2>
-	</center>
-
+		<h2>Please login</h2>
+	</center>	
+	
 	<form method="post" action="login.jsp">
 		<table style="border:none" align="center">
 			<tr>

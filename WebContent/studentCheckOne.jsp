@@ -5,11 +5,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Rutgers Special Permission System</title>
+<title>Rutgers Special Permission System | Check Status</title>
 </head>
 <body>
-	
 	<!-- Student chooses section -->
+	<%=session.getAttribute("netid")%>
+	<%=session.getAttribute("ruid")%>
 	
 	<center>
 		<p><img src = "http://www.holidaylga.com/blog/wp-content/uploads/2011/12/Rutgers-R-Logo.jpg" width="100px"></p>
@@ -23,6 +24,8 @@
 		String deptNum = (String)session.getAttribute("majorid");
 		//System.out.println("DEPT: "+deptNum);		
 		String courseNum = (String)session.getAttribute("cid");
+		String userNetID = (String)session.getAttribute("netid");
+		String ruid = (String)session.getAttribute("netid");
 	%>
 		
 	<%	
@@ -34,8 +37,8 @@
 		String url = "jdbc:mysql://localhost:3306/spnrequest";
 		String user = "root";
 		String password = "";
-		
-		String sql = "SELECT secnum FROM courses WHERE cid="+courseNum;
+		System.out.println(userNetID);
+		String sql = "SELECT * FROM requestTest WHERE netid='"+userNetID+"'";
 	%>
 
 	<%		
@@ -48,10 +51,30 @@
 
 	<table border="1" align="center">
 		<tr>
-			<td>Course</td>
-			<td>Section</td>
-			<td>Status</td>
+			<td><center>Department</center></td>
+			<td><center>Course</center></td>
+			<td><center>Section</center></td>
+			<td><center>Status</center></td>
+			<td><center>Cancel Request</center></td>
 		</tr>
+		<%
+			while(rs.next()){
+				String dept = rs.getString("dept");
+				String course = rs.getString("course");
+				String section = rs.getString("section");
+				String status = rs.getString("status");
+		%>
+		<tr>
+			<td><center><%=dept%></center></td>
+			<td><center><%=course%></center></td>
+			<td><center><%=section%></center></td>
+			<td><center><i><%=status %></i></center></td>
+			<td><center><input type="checkbox" name="delete"></center></td>
+		</tr>
+		<%		
+			}
+		%>
+
 	</table>
 	
 	<% 

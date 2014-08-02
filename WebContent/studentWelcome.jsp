@@ -8,20 +8,10 @@ pageEncoding="ISO-8859-1"%>
 <title>Welcome Student!</title>
 </head>
 <body>
-	
 	<!-- Landing page for students -->
-
-	<%	
-		Connection conn = null;
-		PreparedStatement ps = null;
-		ResultSet rs = null;
+	<%=session.getAttribute("netid") %>
+	<%=session.getAttribute("ruid") %>
 	
-		String driverName = "com.mysql.jdbc.Driver";
-		String url = "jdbc:mysql://localhost:3306/spnrequest";
-		String user = "root";
-		String password = "";
-	%>
-
 	<center>
 		<p><img src = "http://www.holidaylga.com/blog/wp-content/uploads/2011/12/Rutgers-R-Logo.jpg" width="100px"></p>
 		<h1 style="color:red">Rutgers Special Permission Request System</h1><hr width="80%">

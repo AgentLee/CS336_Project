@@ -6,6 +6,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Rutgers Special Permission System</title>
+<style>
+
+</style>
 </head>
 <body>
 
@@ -17,7 +20,7 @@
 		<h2><%=session.getAttribute("name")%></h2>
 	</center>
 	
-	<form method = "post" action = "studentRequestTwoThreeConnection.jsp">
+	<form method = "post" action = "studentRequestFive.jsp">
 	<%
 		String deptNum = (String)session.getAttribute("majorid");
 		//System.out.println("DEPT: "+deptNum);
@@ -47,8 +50,12 @@
 		<center>
 			<h3>Requesting: <%=session.getAttribute("majorid")%>: <%=session.getAttribute("cid")%>: <%=session.getAttribute("secnum")%></h3>
 			<!-- The input text box needs to be fixed -->
-			Reasoning: <input type="text" name="spnReason" style="height:100px; width:200px;" >
-			<p><a href ="studentRequestOne.jsp">Choose another course</a></p>
+			<!-- Reasoning: <input type="text" name="spnReason" style="height:100px; width:200px;" > -->
+			<h4>I need this because...</h4>
+			<ul style="display:inline;">
+				<li><a href="studentRequestThree.jsp">Choose a different section</a>
+				<li><a href="studentRequestOne.jsp">Choose a different course</a></li>
+			</ul>
 		</center>
 	
 	<%

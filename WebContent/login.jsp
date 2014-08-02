@@ -17,6 +17,7 @@ pageEncoding="ISO-8859-1"%>
 	String userName;
 	String userPassword;
 	String userType;
+	String userRUID;
 %>
 <%
 	Connection con= null;
@@ -34,6 +35,7 @@ pageEncoding="ISO-8859-1"%>
 	String password = request.getParameter("password");
 	String name = request.getParameter("name");
 	String usertype = request.getParameter("usertype");
+	String ruid = request.getParameter("ruid");
 	
 	if((!(netid.equals(null) || netid.equals("")) && !(password.equals(null) || password.equals("")))){
 		try{
@@ -48,10 +50,14 @@ pageEncoding="ISO-8859-1"%>
 				userPassword = rs.getString("password");
 				userName = rs.getString("name");
 				userType = rs.getString("usertype");
+				userRUID = rs.getString("ruid");
+				
 				//System.out.println(userdbNetID);
 				if(netid.equals(userNetID) && password.equals(userPassword)){
 					session.setAttribute("name",userName);
 					session.setAttribute("usertype",userType);
+					session.setAttribute("netid", userNetID);
+					session.setAttribute("ruid", userRUID);
 					
 					if(userType.equals("1")){
 						response.sendRedirect("studentWelcome.jsp");
