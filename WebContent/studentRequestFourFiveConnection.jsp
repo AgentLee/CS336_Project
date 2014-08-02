@@ -8,8 +8,10 @@ pageEncoding="ISO-8859-1"%>
 <title>Login</title>
 </head>
 <body>
-
-	<%! String userSecNum; %>
+	<%= session.getAttribute("netid")%>
+	<%= session.getAttribute("majorid")%>
+	<%=	session.getAttribute("cid")%>
+	<%=	session.getAttribute("secnum")%>
 
 	<%
 		Connection conn = null;
@@ -21,40 +23,27 @@ pageEncoding="ISO-8859-1"%>
 		String user = "root";
 		String password = "";
 
-		String query = "INSERT INTO requesttest VALUES() * FROM courses WHERE secnum=?";
+		Class.forName(driverName);
+		conn = DriverManager.getConnection(url, user, password);
+		
+		Statement statement = conn.createStatement();
+        	
+		String userNetID = (String)session.getAttribute("netid");
+		String userMajorID = (String)session.getAttribute("majorid");
+		String userCID = (String)session.getAttribute("cid");
+		String userSecNum = (String)session.getAttribute("secnum");
+		String userStatus = "Pending";
 
-		String secNum = request.getParameter("secnum");
-	
-		if(!(secNum.equalsIgnoreCase("select"))){
-			try{
-				Class.forName(driverName);
-				conn = DriverManager.getConnection(url, user, password);
-				ps = conn.prepareStatement(query);
-				ps.setString(1, secNum);
-				rs = ps.executeQuery();
-				if(rs.next()){ 
-					userSecNum = rs.getString("secnum");
-					System.out.println(userSecNum);
-					if(secNum.equals(userSecNum)){
-						session.setAttribute("secnum",userSecNum);
-						response.sendRedirect("studentRequestFour.jsp");
-					}
-				}else {
-					response.sendRedirect("error.jsp");
-				}
-				rs.close();
-				ps.close(); 
-			} catch(SQLException sqe){
-				out.println(sqe);
-			} 
-		} else {
+		String query = "INSERT INTO requesttest VALUES('"+userMajorID+"','"+userCID+"','"+userSecNum+"','"+userNetID+"','"+userStatus+"')";
+		//String query = "INSERT INTO requesttest VALUES('198', '111', '01', 'root', 'pending')";
+		//String query = "INSERT INTO requesttest VALUES("198", , '01', 'root', 'pending')";
+		statement.executeUpdate(query);
+		
+		response.sendRedirect("studentRequestFive.jsp");
+		
 	%>
 	
 	<center><p style="color:red">Error processing request</p></center>
-	
-	<% 
-		getServletContext().getRequestDispatcher("/index.jsp").include(request, response);
-	}
-	%>
+
 </body>
 </html>

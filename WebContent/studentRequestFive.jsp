@@ -11,7 +11,7 @@
 		getServletContext().getRequestDispatcher("/studentCheckOne.jsp").include(request, response);
 	%>
 	
-	<center><h3>Request Submitted!</h3></center>
+	<center><h3 style="color:red">Request Submitted!</h3></center>
 
 </body>
 </html>

@@ -20,7 +20,7 @@
 		<h2><%=session.getAttribute("name")%></h2>
 	</center>
 	
-	<form method = "post" action = "studentRequestFive.jsp">
+	<form method = "post" action = "studentRequestFourFiveConnection.jsp">
 	<%
 		String deptNum = (String)session.getAttribute("majorid");
 		//System.out.println("DEPT: "+deptNum);
