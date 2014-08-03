@@ -19,7 +19,7 @@
 		<h3>SPN Request Status</h3>
 	</center>	
 	
-	<form method = "post" action = "studentRequestThreeFourConnection.jsp">
+	<form method = "post" action = "studentDeleteConnection.jsp">
 	<%
 		String deptNum = (String)session.getAttribute("majorid");
 		//System.out.println("DEPT: "+deptNum);		
@@ -37,7 +37,7 @@
 		String url = "jdbc:mysql://localhost:3306/spnrequest";
 		String user = "root";
 		String password = "";
-		System.out.println(userNetID);
+		//System.out.println(userNetID);
 		String sql = "SELECT * FROM requestTest WHERE netid='"+userNetID+"'";
 	%>
 
@@ -69,7 +69,7 @@
 			<td><center><%=course%></center></td>
 			<td><center><%=section%></center></td>
 			<td><center><i><%=status %></i></center></td>
-			<td><center><input type="checkbox" name="delete"></center></td>
+			<td><center><input type="radio" name="delete"></center></td>
 		</tr>
 		<%		
 			}

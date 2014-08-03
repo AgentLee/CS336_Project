@@ -58,7 +58,7 @@
 				</tr>
 			</table>
 			<br>
-			<input type="submit" value="submit"/>
+			<input type="submit" value="next"/>
 		</center>
 	</form>
 	<center>

@@ -63,30 +63,13 @@
 			%>
 		</table>
 
-		<table border="1" align="center">
-			<tr>
-				<td><%=session.getAttribute("majorid")%>: </td>
-				<td><%=session.getAttribute("cid")%>: </td>
-				<td>Select Section
-					<select name="secnum">
-					<option value="select">select</option>
-	<%
-					while(rs.next()){
-						String secnum = rs.getString("secnum");
-	%>
-						<option value=<%=secnum%>><%=secnum%></option>
 	<% 
-					}
 		}catch(SQLException sqe){
 			out.println("index"+sqe);
 		}
 	%>
-					</select>
-				</td>
-			</tr>
-		</table>
 		<br>	
-		<center><input type="submit" value="submit"/></center>
+		<center><input type="submit" value="next"/></center>
 	</form>
 	<center>
 		<p><a href="studentWelcome.jsp">Back to homepage</a></p>

@@ -20,7 +20,7 @@
 	<form method = "post" action = "studentRequestTwoThreeConnection.jsp">
 		<%
 			String deptNum = (String)session.getAttribute("majorid");
-			System.out.println("DEPT: "+deptNum);
+			//System.out.println("DEPT: "+deptNum);
 		%>
 		
 	<%	
@@ -66,7 +66,7 @@
 		</tr>
 	</table>
 	<br>	
-	<center><input type="submit" value="submit"/></center>
+	<center><input type="submit" value="next"/></center>
 	</form>
 	<center>
 		<p><a href="studentWelcome.jsp">Back to homepage</a></p>

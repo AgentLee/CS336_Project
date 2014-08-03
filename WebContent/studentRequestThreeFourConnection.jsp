@@ -34,7 +34,7 @@ pageEncoding="ISO-8859-1"%>
 				rs = ps.executeQuery();
 				if(rs.next()){ 
 					userSecNum = rs.getString("secnum");
-					System.out.println(userSecNum);
+					//System.out.println(userSecNum);
 					if(secNum.equals(userSecNum)){
 						session.setAttribute("secnum",userSecNum);
 						response.sendRedirect("studentRequestFour.jsp");

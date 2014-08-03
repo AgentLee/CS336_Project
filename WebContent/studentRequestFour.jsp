@@ -48,14 +48,12 @@
 	<!-- If you can figure out how to make an entire listing of the sections instead of just a drop down menu for the sections, that'd be awesome -->
 	
 		<center>
-			<h3>Requesting: <%=session.getAttribute("majorid")%>: <%=session.getAttribute("cid")%>: <%=session.getAttribute("secnum")%></h3>
+			<h3>SPN for <%=session.getAttribute("majorid")%> : <%=session.getAttribute("cid")%> : <%=session.getAttribute("secnum")%></h3>
 			<!-- The input text box needs to be fixed -->
 			<!-- Reasoning: <input type="text" name="spnReason" style="height:100px; width:200px;" > -->
 			<h4>I need this because...</h4>
-			<ul style="display:inline;">
-				<li><a href="studentRequestThree.jsp">Choose a different section</a>
-				<li><a href="studentRequestOne.jsp">Choose a different course</a></li>
-			</ul>
+			<textarea name="spnReason" rows="5" cols="50"></textarea>
+			<p><a href="studentRequestThree.jsp">Choose a different section</a> | <a href="studentRequestOne.jsp">Choose a different course</a></p>
 		</center>
 	
 	<%

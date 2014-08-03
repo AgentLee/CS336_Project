@@ -8,18 +8,6 @@ pageEncoding="ISO-8859-1"%>
 <title>Login</title>
 </head>
 <body>
-
-    <%
-        StringBuffer spnReason = new StringBuffer(request.getParameter("spnReason"));
-  
-        int loc = (new String(spnReason)).indexOf('\n');
-        while(loc > 0){
-        	spnReason.replace(loc, loc+1, "<BR>");
-            loc = (new String(spnReason)).indexOf('\n');
-       }
-     %>
-
-
 	<%= session.getAttribute("netid")%>
 	<%= session.getAttribute("majorid")%>
 	<%=	session.getAttribute("cid")%>
@@ -45,11 +33,15 @@ pageEncoding="ISO-8859-1"%>
 		String userCID = (String)session.getAttribute("cid");
 		String userSecNum = (String)session.getAttribute("secnum");
 		String userStatus = "Pending";
+		
+		System.out.println(userNetID);
+		System.out.println(userMajorID);
 
-		String query = "INSERT INTO requesttest VALUES('"+userMajorID+"','"+userCID+"','"+userSecNum+"','"+userNetID+"','"+userStatus+"','"+spnReason+"')";
+		String query = "DELETE FROM requesttest WHERE dept='"+userMajorID+"' and course='"+userCID+"' and section='"+userSecNum+"' and netid='"+userNetID+"'";
+
 		statement.executeUpdate(query);
 		
-		response.sendRedirect("studentRequestFive.jsp");
+		response.sendRedirect("studentDeleteOne.jsp");
 	%>
 	
 	<center><p style="color:red">Error processing request</p></center>
