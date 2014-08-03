@@ -36,7 +36,6 @@ Students
 
 		studentRequestFour.jsp 	
 			- Student explains why they need the SPN
-			* Text box needs work
 			* Request Table does not work (I made my own table to test) 
 
 		studentRequestFive.jsp
