@@ -24,6 +24,9 @@ Students
 		---------------
 		New SPN Request
 		---------------
+		* Need to make sure it only shows the current semester
+			- The administrator should have this job
+			
 		studentRequestOne.jsp 	
 			- Picks the department
 
