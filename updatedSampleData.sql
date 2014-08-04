@@ -1,4 +1,3 @@
-
 insert into usertypeid values(1, 'Student');
 insert into usertypeid values(2, 'Professor');
 insert into usertypeid values(3, 'Admin');
