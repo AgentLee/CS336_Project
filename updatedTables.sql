@@ -154,6 +154,26 @@ CREATE TABLE Request(
 		ON UPDATE NO ACTION
 );
 
+CREATE TABLE RequestTest(
+	majorID CHAR(3),
+	cid CHAR(3),
+	secNum CHAR(2),
+	netid VARCHAR(15),
+	status CHAR(20),
+	reason CHAR(20),
+	response CHAR(20) DEFAULT NULL,
+	PRIMARY KEY(netid, majorID, cid, secNum, semesterID, year),
+	FOREIGN KEY(majorID) REFERENCES Majors(majorID)
+		ON DELETE NO ACTION
+		ON UPDATE NO ACTION,
+	FOREIGN KEY(cid, secNum, semesterID, year) REFERENCES Courses(cid, secNum, semesterID, year)
+		ON DELETE NO ACTION
+		ON UPDATE NO ACTION,
+	FOREIGN KEY(netid) REFERENCES Users(netid)
+		ON DELETE NO ACTION
+		ON UPDATE NO ACTION
+);
+
 CREATE TABLE spns(
 	majorID CHAR(3),
 	cid CHAR(3),
