@@ -14,7 +14,8 @@ Overview of the JSP pages
 Login
 -----
 	index.jsp - login page
-	login.jsp - validates netid/password with the databse
+	login.jsp - validates netid/password with the database
+	error.jsp - redirects bad links/bad data 
 
 --------
 Students
