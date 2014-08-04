@@ -36,6 +36,8 @@ pageEncoding="ISO-8859-1"%>
 		
 		System.out.println(userNetID);
 		System.out.println(userMajorID);
+		System.out.println(userCID);
+		System.out.println(userSecNum);
 
 		String query = "DELETE FROM requesttest WHERE dept='"+userMajorID+"' and course='"+userCID+"' and section='"+userSecNum+"' and netid='"+userNetID+"'";
 
@@ -45,6 +47,5 @@ pageEncoding="ISO-8859-1"%>
 	%>
 	
 	<center><p style="color:red">Error processing request</p></center>
-
 </body>
 </html>

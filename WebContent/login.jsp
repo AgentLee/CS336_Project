@@ -52,7 +52,6 @@ pageEncoding="ISO-8859-1"%>
 				userType = rs.getString("usertype");
 				userRUID = rs.getString("ruid");
 				
-				//System.out.println(userdbNetID);
 				if(netid.equals(userNetID) && password.equals(userPassword)){
 					session.setAttribute("name",userName);
 					session.setAttribute("usertype",userType);

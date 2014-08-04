@@ -41,7 +41,11 @@ pageEncoding="ISO-8859-1"%>
 						response.sendRedirect("studentRequestTwo.jsp");
 					}
 				}else {
-					response.sendRedirect("error.jsp");
+	%>
+	<center><p style="color:red">No SPNs from that department</p></center>
+	<%
+					//Add error message
+					response.sendRedirect("studentRequestOne.jsp");
 				}
 				rs.close();
 				ps.close(); 
@@ -51,10 +55,10 @@ pageEncoding="ISO-8859-1"%>
 		} else {
 	%>
 	
-	<center><p style="color:red">Error In Login</p></center>
+	<center><p style="color:red">No SPNs from that department</p></center>
 	
 	<% 
-		getServletContext().getRequestDispatcher("/index.jsp").include(request, response);
+		getServletContext().getRequestDispatcher("/studentRequestOne.jsp").include(request, response);
 	}
 	%>
 </body>
