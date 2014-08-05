@@ -189,3 +189,20 @@ CREATE TABLE spns(
 		ON DELETE NO ACTION
 		ON UPDATE NO ACTIOn
 );
+
+delimiter //
+CREATE TRIGGER check_userType BEFORE INSERT ON Users
+	FOR EACH ROW
+	BEGIN
+    	IF NEW.ruid LIKE '1%' THEN
+                	INSERT INTO User(ruid, name, netid, password, useryType)
+                	VALUES(NEW.ruid, NEW.name, NEW.netid, NEW.password, '1');
+    	ELSEIF NEW.ruid LIKE '2%' THEN
+                	INSERT INTO User(ruid, name, netid, password, useryType)
+                	VALUES(NEW.ruid, NEW.name, NEW.netid, NEW.password, '2');
+    	ELSEIF NEW.ruid LIKE '3%' THEN
+                	INSERT INTO User(ruid, name, netid, password, useryType)
+                	VALUES(NEW.ruid, NEW.name, NEW.netid, NEW.password, '3');
+    	END IF;
+	END;//
+delimiter ;
