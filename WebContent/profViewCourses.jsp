@@ -16,16 +16,16 @@
 		<p><img src = "http://www.holidaylga.com/blog/wp-content/uploads/2011/12/Rutgers-R-Logo.jpg" width="100px"></p>
 		<h1 style="color:red">Rutgers Special Permission Request System</h1><hr width="80%">
 		<h2><%=session.getAttribute("name")%></h2>
-		<h3>SPN Request Status</h3>
+		<h3>SPN Requests</h3>
+		<a href = "viewTranscript.jsp">click</a>
 	</center>	
 	
 	<form method = "post" action = "studentDeleteConnection.jsp">
 	<%
 		String deptNum = (String)session.getAttribute("majorid");
-		//System.out.println("DEPT: "+deptNum);		
 		String courseNum = (String)session.getAttribute("cid");
-		String userNetID = (String)session.getAttribute("netid");
-		String ruid = (String)session.getAttribute("netid");
+		String profid = (String)session.getAttribute("netid");
+		//System.out.println(profid);
 	%>
 		
 	<%	
@@ -38,7 +38,7 @@
 		String user = "root";
 		String password = "";
 		//System.out.println(userNetID);
-		String sql = "SELECT * FROM requestTest WHERE netid='"+userNetID+"'";
+		String sql = "SELECT * FROM requestTest WHERE profid='"+profid+"'";
 	%>
 
 	<%		
@@ -51,24 +51,29 @@
 
 	<table border="1" align="center">
 		<tr>
+			<td><center>Student ID</center></td>
 			<td><center>Department</center></td>
 			<td><center>Course</center></td>
 			<td><center>Section</center></td>
-			<td><center>Status</center></td>
-			<td><center>Cancel Request</center></td>
+			<td><center>Reason</center></td>
+			<td><center>View Transcript</center></td>
+			<td><center>Deny</center></td>
 		</tr>
 		<%
 			while(rs.next()){
+				String student = rs.getString("netid");
 				String dept = rs.getString("majorid");
 				String course = rs.getString("cid");
 				String section = rs.getString("secnum");
-				String status = rs.getString("status");
+				String reason = rs.getString("reason");
 		%>
 		<tr>
+			<td><center><%=student%></center>
 			<td><center><%=dept%></center></td>
 			<td><center><%=course%></center></td>
 			<td><center><%=section%></center></td>
-			<td><center><i><%=status %></i></center></td>
+			<td><center><i><%=reason%></i></center></td>
+			<td><center><input type="submit" name="Transcript"></center></td>
 			<td><center><input type="radio" name="delete"></center></td>
 		</tr>
 		<%		

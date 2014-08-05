@@ -1,5 +1,6 @@
 insert into usertypeid values(1, 'Student');
 insert into usertypeid values(2, 'Professor');
+/*
 insert into usertypeid values(3, 'Admin');
 
 insert into majors values('198', 'Computer Science');
@@ -21,5 +22,20 @@ insert into classrooms values('ENG', 120, '111');
 insert into courses values('198', '111', '01', 'FA', '2014', '345678912','ENG', '111', 120, '2014-9-21', null);  
 insert into courses values('198', '112', '01', 'FA', '2014', '345678912', 'ENG', '111', 120, '2014-9-21', '198:111');  
 insert into courses values('198', '211', '01', 'FA', '2014', '345678912','ENG', '111', 120, '2014-9-21', '198:112');  
+*/
+insert into courses values('198', '111', '01', 'SP', '2013', '345678912','ENG', '111', 120, '2013-1-21', null);
+insert into courses values('198', '112', '01', 'FA', '2013', '345678912', 'ENG', '111', 120, '2013-9-21', '198:111');  
+insert into courses values('198', '211', '01', 'SP', '2014', '345678912','ENG', '111', 120, '2014-1-21', '198:112');  
+insert into courses values('198', '336', '01', 'SU', '2014', '345678912','ENG', '111', 120, '2014-6-21', '198:112, 198:205');  
+insert into courses values('198', '205', '01', 'FA', '2013', '345678912','ENG', '111', 120, '2013-9-21', '198:111');  
+insert into courses values('198', '206', '01', 'SP', '2014', '345678912','ENG', '111', 120, '2014-1-21', '198:205'); 
+insert into courses values('640', '152', '01', 'FA', '2012', '345678912','ENG', '111', 120, '2012-9-21', '640:151'); 
+insert into courses values('640', '250', '01', 'SP', '2013', '345678912','ENG', '111', 120, '2013-9-21', '640:152'); 
 
-
+insert into transcript values('123456789', 'FA', '640', '152', '2012', 'A', '2012', null);
+insert into transcript values('123456789', 'SP', '198', '111', '2013', 'A', '2012', null);
+insert into transcript values('123456789', 'SP', '640', '250', '2013', 'B', '2012', null);
+insert into transcript values('123456789', 'FA', '198', '112', '2013', 'C+', '2012', null);
+insert into transcript values('123456789', 'FA', '198', '205', '2013', 'B', '2012', null);
+insert into transcript values('123456789', 'SP', '198', '206', '2014', 'B', '2012', null);
+insert into transcript values('123456789', 'SP', '198', '211', '2014', 'A', '2012', null);

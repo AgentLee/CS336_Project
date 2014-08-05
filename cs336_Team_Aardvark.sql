@@ -211,7 +211,7 @@ CREATE TRIGGER check_request_spn BEFORE INSERT ON request
 #<--Yuan: before prof. give spn to student, check if all spn's are used out-->
 CREATE TRIGGER check_give_spn BEFORE UPDATE ON request
 	FOR EACH ROW 
-	BEGIN
+	BEGIN	
 		IF 10 <=(SELECT COUNT(*)
 			FROM request R
 			WHERE OLD.cid = R.cid AND OLD.secNum = R.secNum AND R.response <> NULL)

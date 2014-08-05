@@ -68,11 +68,11 @@ CREATE TABLE Courses(
 
 CREATE TABLE Transcript(
 	ruid CHAR(9),
-	semesterID CHAR(2),
-	cid CHAR(2),
-	year CHAR(2),
-	grade CHAR(2),
 	majorID CHAR(3),
+	cid CHAR(3),	
+	grade CHAR(2),
+	semesterID CHAR(2),
+	year CHAR(4),
 	enrolled CHAR(5),
 	grad CHAR(5) DEFAULT NULL,
 	PRIMARY KEY(ruid, majorID, cid), #I think majorID should be in the key

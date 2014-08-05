@@ -27,10 +27,8 @@ pageEncoding="ISO-8859-1"%>
 		<h1 style="color:red">Rutgers Special Permission Request System</h1><hr width="80%">
 		<h2>Welcome <%=session.getAttribute("name")%>!</h2>
 	</center>
-	
-	
 
-	<form method="post" action="studentRequestOne.jsp">
+	<form method="post" action="profViewCourses.jsp">
   		<center><input type="submit" value="View Courses"></center>
 	</form>	
 	<center><p><a href="logout.jsp">Logout</a></p></center>

@@ -45,8 +45,9 @@ pageEncoding="ISO-8859-1"%>
 		String userCID = (String)session.getAttribute("cid");
 		String userSecNum = (String)session.getAttribute("secnum");
 		String userStatus = "Pending";
+		String userResponse = "";
 
-		String query = "INSERT INTO requesttest VALUES('"+userMajorID+"','"+userCID+"','"+userSecNum+"','"+userNetID+"','"+userStatus+"','"+spnReason+"')";
+		String query = "INSERT INTO requesttest VALUES('"+userMajorID+"','"+userCID+"','"+userSecNum+"','"+userNetID+"','"+userStatus+"','"+spnReason+"','"+userResponse+"')";
 		statement.executeUpdate(query);
 		
 		response.sendRedirect("studentRequestFive.jsp");
