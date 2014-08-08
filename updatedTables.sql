@@ -190,6 +190,15 @@ CREATE TABLE spns(
 		ON UPDATE NO ACTIOn
 );
 
+CREATE TABLE prereq(
+	majorID CHAR(3),
+	cid CHAR(3),
+	ruid varchar(9)
+	PRIMARY KEY(ruid),
+	KEY(ruid),
+	FOREIGN KEY(ruid) REFERENCES Students(ruid)
+);
+
 delimiter //
 CREATE TRIGGER check_userType BEFORE INSERT ON Users
 	FOR EACH ROW
