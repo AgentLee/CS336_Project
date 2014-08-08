@@ -206,3 +206,67 @@ CREATE TRIGGER check_userType BEFORE INSERT ON Users
     	END IF;
 	END;//
 delimiter ;
+
+
+#<--Yuan: check if students need spn to register the course. two conditions: 1 late registration, 2 prereq overwrite, not sure if the code works... really need help-->
+delimiter //
+CREATE TRIGGER check_register BEFORE INSERT ON Register
+	FOR EACH ROW
+	BEGIN
+		IF NEW.registerTime > Course.deadline #<--deadline past-->
+			OR 
+			0 = (SELECT COUNT(T.cid)
+			FROM Transcript T, Course C, NEW
+			WHERE NEW.cid = C.cid AND NEW.ruid = T.ruid AND T.cid = C.prereq) #<--the prereq course is not taken-->
+			OR
+			'C' >= (SELECT T.grade
+			FROM Transcript T, Course C, NEW
+			WHERE NEW.cid = C.cid AND NEW.ruid = T.ruid AND T.cid = C.prereq)#<--the grade is lower than required-->
+			THEN 
+				BEGIN 
+				IF NEW.spNum = (SELECT R.response
+						FROM request R
+						WHERE R.ruid = NEW.ruid)
+			        THEN INSERT INTO Register(ruid, registerTime, majorId, cid, secNum, semester, spNum) #<--spn need to be provided but how to check if this spNum matches the one provided in the request?-->
+                     			VALUES(NEW.ruid, NEW.registerTime, NEW.majorId, NEW.cid, NEW.secNum, NEW.semester, NEW.spNum)
+                     		ELSE NO ACTION
+                     		END IF
+                     		END;
+
+		ELSE INSERT INTO Register(ruid, registerTime, majorId, cid, secNum, semester,spNum)#<--can register without spNum-->
+                     VALUES(NEW.ruid, NEW.registerTime, NEW.majorId, NEW.cid, NEW.secNum, NEW.semester);
+                END IF;
+	END;//
+delimiter ;
+ 
+#<--Yuan: before add tuples in request, check if all 10 spn's for such section are used out, if not, add the tuple, if yes reject the action-->
+delimiter //
+CREATE TRIGGER check_request_spn BEFORE INSERT ON request
+	FOR EACH ROW
+	BEGIN
+		IF 10 <= (SELECT COUNT(R.response)
+			FROM request R, NEW
+			WHERE R.cid = NEW.cid AND R.secNum = NEW.secNum AND R.response <> NULL)
+			THEN
+		NO ACTION
+		ELSE INSERT INTO request(cid, secNum, ruid, time, status, reason, response)
+			VALUES(NEW.cid, NEW.secNum, NEW.ruid, NEW.time, NEW.status, NEW.reason);
+		END IF;
+	END;//
+delimiter ;
+
+
+#<--Yuan: before prof. give spn to student, check if all spn's are used out-->
+delimiter //
+CREATE TRIGGER check_give_spn BEFORE UPDATE ON request
+	FOR EACH ROW 
+	BEGIN	
+		IF 10 <=(SELECT COUNT(*)
+			FROM request R
+			WHERE OLD.cid = R.cid AND OLD.secNum = R.secNum AND R.response <> NULL)
+		THEN
+		NO ACTION
+		ELSE SET OLD.response = NEW.response;
+		END IF;
+	END;//
+delimiter ;

@@ -26,7 +26,7 @@ Students
 		---------------
 		* Need to make sure it only shows the current semester
 			- The administrator should have this job
-			
+
 		studentRequestOne.jsp 	
 			- Picks the department
 
@@ -51,6 +51,12 @@ Students
 		studentCheckOne.jsp 
 			- Student checks status of SPNs
 			- Student can delete a request if they want
+
+----------
+Professors
+----------
+	profWelcome.jsp - professor landing page...checks their courses and spns
+	
 
 
 
