@@ -46,7 +46,8 @@ CREATE TABLE Classrooms(
 	KEY(bldCode, roomID)
 );
 
-#I think we need to add a new table for prereq or something...
+#I think we need to add a new table for prereq or something
+#need to fix the foreign key for prereqs
 CREATE TABLE Courses(
 	majorID CHAR(3),
 	cid CHAR(3),
@@ -58,12 +59,14 @@ CREATE TABLE Courses(
 	roomID char(3),
 	maxEnroll INTEGER,
 	deadline DATETIME,
-	prereq VARCHAR(12),
+	prereqMajorID CHAR(3),
+	prereqCID CHAR(3),
 	PRIMARY KEY(majorID, cid, secNum, semesterID, year),
 	KEY(cid, secNum, semesterID, year),
 	FOREIGN KEY(bldCode, roomID) REFERENCES Classrooms(bldCode, roomID),
 	FOREIGN KEY(majorID) REFERENCES Majors(majorID),
-	FOREIGN KEY(profID) REFERENCES Users(ruid)
+	FOREIGN KEY(profID) REFERENCES Users(ruid),
+	FOREIGN KEY(prereqMajorID, prereqCID) REFERENCES prerequisites(prereqMajorID, prereqCID)
 );
 
 CREATE TABLE Transcript(
@@ -190,12 +193,14 @@ CREATE TABLE spns(
 		ON UPDATE NO ACTIOn
 );
 
-CREATE TABLE prereq(
+CREATE TABLE prerequisites(
 	majorID CHAR(3),
 	cid CHAR(3),
 	ruid varchar(9)
 	PRIMARY KEY(ruid),
-	KEY(ruid),
+	KEY(ruid, majorID, CID),
+	FOREIGN KEY(majorID) REFERENCES Majors(majorID),
+	FOREIGN KEY(CID) REFERENCES courses(cid),
 	FOREIGN KEY(ruid) REFERENCES Students(ruid)
 );
 
