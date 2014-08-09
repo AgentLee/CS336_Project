@@ -11,6 +11,7 @@ THINGS THAT NEED TO BE WORKED ON
 
 	STUDENTS
 		- Inserting into request, find way to get profid (probably by execuitng another sql code)
+		- Enforce adding a reason to request (maybe by radio/checkbox buttons)
 
 	PROFESSORS
 		- Transcript
