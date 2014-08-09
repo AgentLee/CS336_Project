@@ -59,7 +59,7 @@ CREATE TABLE Courses(
 	roomID char(3),
 	maxEnroll INTEGER,
 	deadline DATETIME,
-	prereq char (20),
+	prereq varchar (20),
 	PRIMARY KEY(majorID, cid, secNum, semesterID, year),
 	KEY(cid, secNum, semesterID, year),
 	FOREIGN KEY(bldCode, roomID) REFERENCES Classrooms(bldCode, roomID),
@@ -194,7 +194,7 @@ CREATE TABLE spns(
 CREATE TABLE prerequisites(
 	majorID CHAR(3),
 	cid CHAR(3),
-	ruid varchar(9)
+	ruid varchar(9),
 	PRIMARY KEY(ruid),
 	KEY(ruid, majorID, CID),
 	FOREIGN KEY(majorID) REFERENCES Majors(majorID),
