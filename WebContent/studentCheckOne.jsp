@@ -55,6 +55,7 @@
 			<td><center>Course</center></td>
 			<td><center>Section</center></td>
 			<td><center>Status</center></td>
+			<td><center>SPN</center></td>
 			<td><center>Cancel Request</center></td>
 		</tr>
 		<%
@@ -63,12 +64,14 @@
 				String course = rs.getString("cid");
 				String section = rs.getString("secnum");
 				String status = rs.getString("status");
+				String spn = rs.getString("response");
 		%>
 		<tr>
 			<td><center><%=dept%></center></td>
 			<td><center><%=course%></center></td>
 			<td><center><%=section%></center></td>
-			<td><center><i><%=status %></i></center></td>
+			<td><center><i><%=status%></i></center></td>
+			<td><center><%=spn%></center></td>
 			<td><center><input type="radio" name="delete"></center></td>
 		</tr>
 		<%		

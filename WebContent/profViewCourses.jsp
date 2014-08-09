@@ -47,7 +47,7 @@
 	<table border="1" align="center">
 		<tr>
 			<td><center>Department:Course:Section</center></td>
-			<td><center>View Request</center></td>
+			<td><center>View Requests</center></td>
 		</tr>
 		<%
 			while(rs.next()){

@@ -14,7 +14,7 @@
 	}
 </style>
 </head>
-<body>
+<body>	
 	<!-- Professor/Admin gets to look at transcript -->
 	
 	<%
@@ -49,6 +49,9 @@
 				section1 = section1+courseInfo.charAt(i);
 			}
 		}
+		
+		//have a boolean function on profViewCourseRequest
+		//then have course info = this course info
 	%>
 	
 	

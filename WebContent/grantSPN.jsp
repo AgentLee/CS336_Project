@@ -4,9 +4,14 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>SPN Granted</title>
+<title>Rutgers Special Permission Request System | SPN Granted</title>
 </head>
 <body>
+	<% 
+		getServletContext().getRequestDispatcher("/profViewCourses.jsp").include(request, response);
+	%>
 	
+	<center><h3 style="color:red">SPN Approved!</h3></center>
+
 </body>
 </html>

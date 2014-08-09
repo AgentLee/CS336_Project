@@ -67,8 +67,11 @@
 				<td><center>Department:Course:Section</center></td>
 				<td><center>Student</center></td>
 				<td><center>Reason</center></td>
+				<td><center>Status</center></td>
 				<td><center>View Transcript</center></td>
 				<td><center>SPN?</center></td>
+				<td><center>Remaining SPNs</center></td>
+				<td><center>Assigned SPN</center></td>
 			</tr>
 			<%
 				while(rs.next()){
@@ -77,14 +80,28 @@
 					String section = rs.getString("secnum");
 					String student = rs.getString("netid");
 					String reason = rs.getString("reason");
+					String status = rs.getString("status");
+					String spn = rs.getString("response");
 			%>
 			<tr>
 				<td><center><%=courseInfo%></center></td>
 				<td><center><%=student%></center></td>
 				<td><center><%=reason%></center></td>
+				<td><center><%=status%></center></td>
 				<td><center><form method="post" action="viewTranscript.jsp" target="_blank"><input type="radio" name="radioButton" value="<%=student%>^<%=courseInfo%>"><input type="submit" value="submit" name="submit"></form></center></td>
-				<td><center><form method="post" action="grantSPN.jsp"><input type="submit" value="grant"></form></center>
-				<center><input type="submit" value="deny"></center></td>
+				<td>
+					<center>
+					<form method="post" action="spnDecision.jsp">
+						<input type="radio" name="radioButton" value="1<%=student%>^<%=courseInfo%>"><font color="green">Grant SPN</font>
+						<br>
+						<input type="radio" name="radioButton" value="0<%=student%>^<%=courseInfo%>"><font color="red">Deny SPN</font>
+						<br>
+						<input type="submit" name="submit" value="submit">
+					</form>
+					</center>
+				</td>
+				<td><center>10</center></td> <!-- The decrement can either be done in SQL or java -->
+				<td><center><%=spn %></center></td>
 			</tr>
 			<%		
 				}

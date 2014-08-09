@@ -10,6 +10,7 @@ THINGS THAT NEED TO BE WORKED ON
 
 
 	STUDENTS
+		- Cancelling SPNs 
 		- Inserting into request, find way to get profid (probably by execuitng another sql code)
 		- Enforce adding a reason to request (maybe by radio/checkbox buttons)
 
@@ -17,10 +18,6 @@ THINGS THAT NEED TO BE WORKED ON
 		- Transcript
 			- Sort by semester
 			- Button to view transcript (the courseinfo string prevents this)
-		- Granting SPN
-			- Should be like studentRequestFourFiveConenection
-		- Denying SPN
-
 		
 	ADMIN
 		- EVERYTHING
