@@ -3,11 +3,17 @@ CS336_Project
 
 
 ************* THINGS THAT NEED TO BE WORKED ON *************
-	SQL --> Triggers/Transcript/Prereq/Requests
 	---
+	SQL 
+	---
+		- Triggers/Transcript/Prereq/Requests
+	
+	--------
 	STUDENTS
 	--------
 		- Inserting into request, find way to get profid (probably by execuitng another sql code)
+	
+	----------
 	PROFESSORS
 	----------
 		- Transcript
@@ -16,6 +22,8 @@ CS336_Project
 		- Granting SPN
 			- Should be like studentRequestFourFiveConenection
 		- Denying SPN
+		
+	-----	
 	ADMIN
 	-----
 		- EVERYTHING
