@@ -3,6 +3,7 @@ CS336_Project
 
 
 ************* THINGS THAT NEED TO BE WORKED ON *************
+
 ---
 SQL 
 ---
@@ -22,7 +23,7 @@ PROFESSORS
 	- Granting SPN
 		- Should be like studentRequestFourFiveConenection
 	- Denying SPN
-	
+
 -----	
 ADMIN
 -----
