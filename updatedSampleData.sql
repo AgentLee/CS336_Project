@@ -34,9 +34,9 @@ insert into courses values('640', '152', '01', 'FA', '2012', '345678912','ENG', 
 insert into courses values('640', '250', '01', 'SP', '2013', '345678912','ENG', '111', 120, '2013-9-21', '640:152'); */
 
 insert into transcript values('123456789', '640', '152', 'A', 'FA', '2012', '2012', null);
-insert into transcript values('123456789', '640', '250', 'B', 'SP', '2013', '2012', null);
+insert into transcript values('123456789', '640', '250', 'A', 'SP', '2013', '2012', null);
 insert into transcript values('123456789', '198', '111', 'A', 'SP', '2013', '2012', null);
-insert into transcript values('123456789', '198', '112', 'C+', 'FA', '2013', '2012', null);
-insert into transcript values('123456789', '198', '205', 'B', 'FA', '2013', '2012', null);
-insert into transcript values('123456789', '198', '206', 'B', 'SP', '2014', '2012', null);
+insert into transcript values('123456789', '198', '112', 'A', 'FA', '2013', '2012', null);
+insert into transcript values('123456789', '198', '205', 'A', 'FA', '2013', '2012', null);
+insert into transcript values('123456789', '198', '206', 'A', 'SP', '2014', '2012', null);
 insert into transcript values('123456789', '198', '211', 'A', 'SP', '2014', '2012', null);
