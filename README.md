@@ -1,5 +1,5 @@
-CS336_Project
-=============
+CS336_Project - Special Permission Number System
+==============================================
 
 --------------------------------
 THINGS THAT NEED TO BE WORKED ON 
@@ -23,10 +23,6 @@ THINGS THAT NEED TO BE WORKED ON
 		
 	ADMIN
 		- EVERYTHING
-
-
-Special Permission Number System
-================================
 
 Overview of the JSP pages
 =========================
