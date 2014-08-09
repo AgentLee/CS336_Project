@@ -5,26 +5,43 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Rutgers Special Permission System</title>
 </head>
 <body>
-<center>
+	<!-- Professor gets to see the students who requested SPNs for that specific course -->
+	
+	<center>
 		<p><img src = "http://www.holidaylga.com/blog/wp-content/uploads/2011/12/Rutgers-R-Logo.jpg" width="100px"></p>
 		<h1 style="color:red">Rutgers Special Permission Request System</h1><hr width="80%">
 		<h2><%=session.getAttribute("name")%></h2>
 	</center>
 	
 	<!-- <form method = "post" action = "studentRequestFourFiveConnection.jsp">-->
-	<%
+	<%	
 	
-		String x = (String)request.getParameter("radioButton");
+		//Gets the string for the course information. Parse to split into Department/Course/Section			
+		String courseInfo = (String)request.getParameter("radioButton");
+		
+		String dept1 = "";
+		String course1 = "";
+		String section1 = "";	
+	
+		for(int i = 0; i < courseInfo.length(); i++){
+			if(i == 3 || i == 7){
+				continue;
+			}if(i < 3){
+				dept1 = dept1+courseInfo.charAt(i);
+			}else if(i > 3 && i < 7){
+				course1 = course1+courseInfo.charAt(i);
+			}else if(i > 7){
+				section1 = section1+courseInfo.charAt(i);
+			}
+		}
 	
 		String deptNum = (String)session.getAttribute("majorid");
-		//System.out.println("DEPT: "+deptNum);
 		String courseNum = (String)session.getAttribute("cid");
 		String secNum = (String)session.getAttribute("secnum");
 		String profID = (String)session.getAttribute("netid");
-		//System.out.println(profID);
 
 		Connection conn = null;
 		PreparedStatement ps = null;
@@ -35,7 +52,7 @@
 		String user = "root";
 		String password = "";
 		
-		String query = "SELECT * FROM requesttest WHERE profid="+"'"+profID+"'";
+		String query = "SELECT * FROM requesttest WHERE cid="+"'"+course1+"' and majorid='"+dept1+"' and secnum='"+section1+"'";
 		
 		try {
 			Class.forName(driverName);
@@ -43,44 +60,49 @@
 			ps = conn.prepareStatement(query);
 			rs = ps.executeQuery(); 
 	%>
-		
-
-		<br>
-		<center><input type="submit" value="submit"/></center>
-
-	<table border="1" align="center">
-		<tr>
-			<td><center>Department</center></td>
-			<td><center>Course</center></td>
-			<td><center>Section</center></td>
-			<td><center>Student</center></td>
-		</tr>
-		<%
-			while(rs.next()){
-				String dept = rs.getString("majorid");
-				String course = rs.getString("cid");
-				String section = rs.getString("secnum");
-				String student = rs.getString("netid");
-		%>
-		<tr>
-			<td><center><%=dept%></center></td>
-			<td><center><%=course%></center></td>
-			<td><center><%=section%></center></td>
-			<td><center><%=student%></center></td>
-		</tr>
-		<%		
-			}
-		%>
-
-	</table>
 	
+	<!-- <form method="post" action="viewTranscript.jsp" target="_blank">	-->
+		<table border="1" align="center">		
+			<tr>
+				<td><center>Department:Course:Section</center></td>
+				<td><center>Student</center></td>
+				<td><center>Reason</center></td>
+				<td><center>View Transcript</center></td>
+				<td><center>SPN?</center></td>
+			</tr>
+			<%
+				while(rs.next()){
+					String dept = rs.getString("majorid");
+					String course = rs.getString("cid");
+					String section = rs.getString("secnum");
+					String student = rs.getString("netid");
+					String reason = rs.getString("reason");
+			%>
+			<tr>
+				<td><center><%=courseInfo%></center></td>
+				<td><center><%=student%></center></td>
+				<td><center><%=reason%></center></td>
+				<td><center><form method="post" action="viewTranscript.jsp" target="_blank"><input type="radio" name="radioButton" value="<%=student%>^<%=courseInfo%>"><input type="submit" value="submit" name="submit"></form></center></td>
+				<td><center><form method="post" action="grantSPN.jsp"><input type="submit" value="grant"></form></center>
+				<center><input type="submit" value="deny"></center></td>
+			</tr>
+			<%		
+				}
+			%>
+	
+		</table>
+		
 	<% 
 		}catch(SQLException sqe){
 			out.println("index"+sqe);
 		}
 	%>
-	
-	
+		
+		<br>
+		<center><input type="submit" value="submit" name="submit"></center>
+	<!-- </form>-->
+		
+
 	
 	<center>
 		<p><a href="profWelcome.jsp">Back to homepage</a></p>

@@ -47,7 +47,7 @@ CREATE TABLE Classrooms(
 );
 
 #I think we need to add a new table for prereq or something
-#need to fix the foreign key for prereqs
+#need to fix the foreign key for prerequisites
 CREATE TABLE Courses(
 	majorID CHAR(3),
 	cid CHAR(3),

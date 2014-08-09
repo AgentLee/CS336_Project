@@ -28,6 +28,9 @@ pageEncoding="ISO-8859-1"%>
 		<h2>Welcome <%=session.getAttribute("name")%>!</h2>
 	</center>
 
+	<form method="post" action="adminAddNewCourse.jsp">
+  		<center><input type="submit" value="Add New Course"></center>
+	</form>	
 	<form method="post" action="profViewCourses.jsp">
   		<center><input type="submit" value="Modify Courses/Sections"></center>
 	</form>	

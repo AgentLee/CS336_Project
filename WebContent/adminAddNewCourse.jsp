@@ -36,7 +36,7 @@
 		<h2><%=session.getAttribute("name")%></h2>
 	</center>
 
-	<form method="post" action="studentRequestOneTwoConnection.jsp">
+	<form method="post" action="adminAddNewCourseOneTwoConnection.jsp">
 		<center>
 			<table border="1">
 				<tr>
@@ -62,7 +62,7 @@
 		</center>
 	</form>
 	<center>
-		<p><a href="studentWelcome.jsp">Back to homepage</a></p>
+		<p><a href="adminWelcome.jsp">Back to homepage</a></p>
 		<p><a href="logout.jsp">Logout</a></p>
 	</center>
 </body>

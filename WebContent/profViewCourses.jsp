@@ -5,19 +5,20 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Rutgers Special Permission System | Check Status</title>
+<title>Rutgers Special Permission System | View Courses</title>
 </head>
 <body>
-	<!-- Student chooses section -->
+	<!-- Professor views the courses they teach -->
+	
 	<%=session.getAttribute("netid")%>
 	<%=session.getAttribute("ruid")%>
 	
+	<!-- H E A D E R -->
 	<center>
 		<p><img src = "http://www.holidaylga.com/blog/wp-content/uploads/2011/12/Rutgers-R-Logo.jpg" width="100px"></p>
 		<h1 style="color:red">Rutgers Special Permission Request System</h1><hr width="80%">
 		<h2><%=session.getAttribute("name")%></h2>
-		<h3>Current Courses</h3>
-		<a href = "viewTranscript.jsp">click</a>
+		<h3>Your Courses</h3>
 	</center>	
 	
 	<form method="post" action="profViewCourseRequests.jsp">
@@ -25,10 +26,7 @@
 		String deptNum = (String)session.getAttribute("majorid");
 		String courseNum = (String)session.getAttribute("cid");
 		String profid = (String)session.getAttribute("netid");
-		//System.out.println(profid);
-	%>
-		
-	<%	
+	
 		Connection conn = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -37,11 +35,8 @@
 		String url = "jdbc:mysql://localhost:3306/spnrequest";
 		String user = "root";
 		String password = "";
-		//System.out.println(userNetID);
 		String sql = "SELECT * FROM requestTest WHERE profid='"+profid+"'";
-	%>
 
-	<%		
 		try {
 			Class.forName(driverName);
 			conn = DriverManager.getConnection(url, user, password);
@@ -59,8 +54,8 @@
 				String dept = rs.getString("majorid");
 				String course = rs.getString("cid");
 				String section = rs.getString("secnum");
-		//might have to parse the string in connection. 
 		%>
+		
 		<tr>
 			<td><center><%=dept%>:<%=course%>:<%=section%></center></td>
 			<td><center><input type="radio" value="<%=dept%>:<%=course%>:<%=section%>" name="radioButton"></center></td>
@@ -81,7 +76,9 @@
 		<br>	
 		<center><input type="submit" value="submit"/></center>
 	</form>
-	<center>
+	
+	<!-- F O O T E R -->
+	<center> 
 		<p><a href="profWelcome.jsp">Back to homepage</a></p>
 		<p><a href="logout.jsp">Logout</a></p>
 	</center>

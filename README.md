@@ -1,6 +1,22 @@
 CS336_Project
 =============
 
+
+************* THINGS THAT NEED TO BE WORKED ON *************
+	- SQL --> Triggers/Transcript/Prereq/Requests
+	- STUDENTS
+		- Inserting into request, find way to get profid (probably by execuitng another sql code)
+	- PROFESSORS
+		- Transcript
+			- Sort by semester
+			- Button to view transcript (the courseinfo string prevents this)
+		- Granting SPN
+			- Should be like studentRequestFourFiveConenection
+		- Denying SPN
+	- ADMIN
+		- EVERYTHING
+
+
 Special Permission Number System
 
 Overview of the JSP pages

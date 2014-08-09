@@ -18,7 +18,7 @@ pageEncoding="ISO-8859-1"%>
 </style>
 </head>
 <body>
-	<!-- Landing page for students -->
+	<!-- Landing page for professors -->
 	<%=session.getAttribute("netid") %>
 	<%=session.getAttribute("ruid") %>
 	
@@ -30,7 +30,6 @@ pageEncoding="ISO-8859-1"%>
 
 	<form method="post" action="profViewCourses.jsp">
   		<center><input type="submit" value="View Courses"></center>
-  		<center><input type="submit" value="View Requests"></center>
 	</form>	
 	<center><p><a href="logout.jsp">Logout</a></p></center>
 </body>
