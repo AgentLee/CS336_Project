@@ -30,6 +30,7 @@ pageEncoding="ISO-8859-1"%>
 
 	<form method="post" action="profViewCourses.jsp">
   		<center><input type="submit" value="View Courses"></center>
+  		<center><input type="submit" value="View Requests"></center>
 	</form>	
 	<center><p><a href="logout.jsp">Logout</a></p></center>
 </body>

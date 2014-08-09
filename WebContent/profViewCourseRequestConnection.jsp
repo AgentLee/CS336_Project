@@ -8,8 +8,10 @@ pageEncoding="ISO-8859-1"%>
 <title>Login</title>
 </head>
 <body>
-
     <%
+    	String x = (String)request.getParameter("radioButton");
+    	System.out.println(x);
+    
         StringBuffer spnReason = new StringBuffer(request.getParameter("spnReason"));
   
         int loc = (new String(spnReason)).indexOf('\n');
@@ -18,8 +20,7 @@ pageEncoding="ISO-8859-1"%>
             loc = (new String(spnReason)).indexOf('\n');
        }
      %>
-
-
+     
 	<%= session.getAttribute("netid")%>
 	<%= session.getAttribute("majorid")%>
 	<%=	session.getAttribute("cid")%>
@@ -46,11 +47,9 @@ pageEncoding="ISO-8859-1"%>
 		String userSecNum = (String)session.getAttribute("secnum");
 		String userStatus = "Pending";
 		String userResponse = "";
-		//String prof = (String)session.getAttribute("profid");
+		String profid = (String)session.getAttribute("profid");
 
-		
-		//Find way to get profid 
-		String query = "INSERT INTO requesttest VALUES('"+userMajorID+"','"+userCID+"','"+userSecNum+"','"+userNetID+"','"+userStatus+"','"+spnReason+"','"+userResponse+"','groot')";
+		String query = "INSERT INTO requesttest VALUES('"+userMajorID+"','"+userCID+"','"+userSecNum+"','"+userNetID+"','"+userStatus+"','"+spnReason+"','"+userResponse+"','"+profid+"')";
 		statement.executeUpdate(query);
 		
 		response.sendRedirect("studentRequestFive.jsp");
