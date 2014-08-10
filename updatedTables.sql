@@ -135,9 +135,10 @@ CREATE TABLE Request(
 	year CHAR(4),
 	ruid CHAR(9),
 	time DATETIME,
-	status CHAR(20),
-	reason CHAR(20),
-	response CHAR(20) DEFAULT NULL,
+	status CHAR(20), #updated by professor
+	reason CHAR(20), #student reason
+	response CHAR(20) DEFAULT NULL, #pending/approved/denied
+	message CHAR(50) DEFAULT NULL, #professor's message to student
 	PRIMARY KEY(ruid, majorID, cid, secNum, semesterID, year),
 	FOREIGN KEY(majorID) REFERENCES Majors(majorID)
 		ON DELETE NO ACTION
