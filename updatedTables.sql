@@ -167,6 +167,19 @@ CREATE TABLE spns(
 		ON UPDATE NO ACTION
 );
 
+CREATE TABLE profMessage(
+	ruid CHAR(9),
+	profID CHAR(9),
+	majorID CHAR(3),
+	CID CHAR(3),
+	secNum CHAR(2),
+	message CHAR(100),
+	date DATETIME,
+	FOREIGN KEY(ruid) REFERENCES Students(ruid),
+	FOREIGN KEY(profID) REFERENCES Users(ruid),
+	FOREIGN KEY(majorid, cid, secnum) REFERENCES Request(majorid, cid, secnum)
+);
+
 delimiter //
 CREATE TRIGGER check_userType BEFORE INSERT ON Users
 	FOR EACH ROW
