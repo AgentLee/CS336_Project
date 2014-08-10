@@ -48,7 +48,7 @@
 	<!-- If you can figure out how to make an entire listing of the sections instead of just a drop down menu for the sections, that'd be awesome -->
 	
 		<center>
-			<h3>SPN for <%=session.getAttribute("majorid")%> : <%=session.getAttribute("cid")%> : <%=session.getAttribute("secnum")%></h3>
+			<h3>SPN for <%=session.getAttribute("majorid")%> : <%=session.getAttribute("cid")%> : <%=session.getAttribute("secnum")%> : <%=session.getAttribute("year")%> <%=session.getAttribute("semesterid")%></h3>
 			<!-- The input text box needs to be fixed -->
 			<!-- Reasoning: <input type="text" name="spnReason" style="height:100px; width:200px;" > -->
 			<h4>I need this because...</h4>
