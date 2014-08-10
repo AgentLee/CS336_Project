@@ -24,6 +24,8 @@ pageEncoding="ISO-8859-1"%>
 	<%= session.getAttribute("majorid")%>
 	<%=	session.getAttribute("cid")%>
 	<%=	session.getAttribute("secnum")%>
+	<%=	session.getAttribute("year")%>
+	<%=	session.getAttribute("semesterid")%>
 
 	<%
 		Connection conn = null;
@@ -44,13 +46,15 @@ pageEncoding="ISO-8859-1"%>
 		String userMajorID = (String)session.getAttribute("majorid");
 		String userCID = (String)session.getAttribute("cid");
 		String userSecNum = (String)session.getAttribute("secnum");
+		String userSemesterID = (String)session.getAttribute("semesterid");
+		String userYear = (String)session.getAttribute("year");
 		String userStatus = "Pending";
 		String userResponse = "";
 		//String prof = (String)session.getAttribute("profid");
 
 		
 		//Find way to get profid 
-		String query = "INSERT INTO requesttest VALUES('"+userMajorID+"','"+userCID+"','"+userSecNum+"','"+userNetID+"','"+userStatus+"','"+spnReason+"','"+userResponse+"','groot')";
+		String query = "INSERT INTO requesttest VALUES('"+userMajorID+"','"+userCID+"','"+userSecNum+"','"+userNetID+"','"+userStatus+"','"+spnReason+"','"+userSemesterID+"','"+userYear+"','"+userResponse+"')";
 		statement.executeUpdate(query);
 		
 		response.sendRedirect("studentRequestFive.jsp");
