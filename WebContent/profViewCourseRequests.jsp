@@ -90,7 +90,7 @@
 					String quantity = rs.getString("quantity");
 					
 					if(status.equalsIgnoreCase("denied")){
-						break;
+						continue;
 					}
 			%>
 			<tr>
