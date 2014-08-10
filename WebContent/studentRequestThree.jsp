@@ -34,7 +34,7 @@
 		String user = "root";
 		String password = "";
 		
-		String sql = "SELECT secnum FROM courses WHERE cid="+courseNum;
+		String sql = "SELECT secnum,year,semesterid FROM courses WHERE cid="+courseNum;
 	%>
 
 	<%		
@@ -53,10 +53,12 @@
 			<%
 				while(rs.next()){
 					String secnum = rs.getString("secnum");
+					String yr = rs.getString("year");
+					String semester = rs.getString("semesterid");
 			%>
 					<tr>
 					<td><input type="radio" name="secnum" value=<%=secnum%>><%=session.getAttribute("majorid")%> : <%=session.getAttribute("cid")%>:</td>
-					<td><%=secnum%></td>
+					<td><%=secnum%></td><td><%=yr%></td><td><%=semester%></td>
 					</tr>
 			<%
 				}
