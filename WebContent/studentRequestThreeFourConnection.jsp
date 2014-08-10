@@ -10,6 +10,8 @@ pageEncoding="ISO-8859-1"%>
 <body>
 
 	<%! String userSecNum; %>
+	<%! String useryr; %>
+	<%! String usersemester; %>
 
 	<%
 		Connection conn = null;
@@ -24,6 +26,8 @@ pageEncoding="ISO-8859-1"%>
 		String query = "SELECT * FROM courses WHERE secnum=?";
 
 		String secNum = request.getParameter("secnum");
+		String yr = request.getParameter("year");
+		String semester = request.getParameter("semesterid");
 	
 		if(!(secNum.equalsIgnoreCase("select"))){
 			try{
@@ -36,6 +40,8 @@ pageEncoding="ISO-8859-1"%>
 					userSecNum = rs.getString("secnum");
 					if(secNum.equals(userSecNum)){
 						session.setAttribute("secnum",userSecNum);
+						session.setAttribute("yr",useryr);
+						session.setAttribute("semester",usersemester);
 						response.sendRedirect("studentRequestFour.jsp");
 					}
 				}else {
