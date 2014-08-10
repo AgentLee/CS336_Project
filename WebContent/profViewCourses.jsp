@@ -9,7 +9,7 @@
 </head>
 <body>
 	<!-- Professor views the courses they teach -->
-	
+ 
 	<%=session.getAttribute("netid")%>
 	<%=session.getAttribute("ruid")%>
 	
@@ -31,11 +31,12 @@
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 	
+		//profid = professor's netid
 		String driverName = "com.mysql.jdbc.Driver";
 		String url = "jdbc:mysql://localhost:3306/spnrequest";
 		String user = "root";
 		String password = "";
-		String sql = "SELECT * FROM requestTest WHERE profid='"+profid+"'";
+		String sql = "SELECT * FROM courses c, users u WHERE c.profid=u.ruid AND u.netid='"+profid+"'";
 
 		try {
 			Class.forName(driverName);
@@ -47,6 +48,7 @@
 	<table border="1" align="center">
 		<tr>
 			<td><center>Department:Course:Section</center></td>
+			<td><center>Location</center></td>
 			<td><center>View Requests</center></td>
 		</tr>
 		<%
@@ -54,16 +56,24 @@
 				String dept = rs.getString("majorid");
 				String course = rs.getString("cid");
 				String section = rs.getString("secnum");
+				String bldCode = rs.getString("bldCode");
+				String roomID = rs.getString("roomID");
 		%>
 		
 		<tr>
 			<td><center><%=dept%>:<%=course%>:<%=section%></center></td>
+			<td><center><%=bldCode%><%=roomID%></center>
 			<td><center><input type="radio" value="<%=dept%>:<%=course%>:<%=section%>" name="radioButton"></center></td>
 		</tr>
 
 		<%		
 			}
 		%>
+		<tr>
+			<td><center>View All Requests for<br>All Courses and Sections</center></td>
+			<td></td>
+			<td><center><input type="radio" value="0" name="radioButton"></center></td>
+		</tr>
 
 	</table>
 	
