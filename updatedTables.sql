@@ -86,7 +86,7 @@ CREATE TABLE Transcript(
 	ruid CHAR(9),
 	majorID CHAR(3),
 	cid CHAR(3),	
-	grade CHAR(2),
+	grade CHAR(4), #curr for classes current classes
 	gpa REAL,
 	credits INTEGER,
 	semesterID CHAR(2),
