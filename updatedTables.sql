@@ -1,13 +1,13 @@
 CREATE TABLE UserTypeID(
 	userType INTEGER,
-	userTypeName VARCHAR(12),
+	userTypeName VARCHAR(12) NOT NULL,
 	PRIMARY KEY(userType),
 	KEY(userType)
 );
 
 CREATE TABLE Majors(
 	majorID CHAR(3),
-	majorName CHAR(20) NOT NULL,
+	majorName CHAR(20),
 	PRIMARY KEY(majorID),
 	KEY(majorID)
 );
@@ -30,7 +30,7 @@ CREATE TABLE Students(
 	netid VARCHAR(15),
 	name VARCHAR(15),
 	majorID CHAR(3),
-	email VARCH(25),
+	email VARCHAR(25),
 	PRIMARY KEY(ruid),
 	KEY(ruid),
 	FOREIGN KEY(ruid) REFERENCES Users(ruid)
@@ -46,9 +46,7 @@ CREATE TABLE Classrooms(
 	PRIMARY KEY(bldCode, roomID),
 	KEY(bldCode, roomID)
 );
-
-#I think we need to add a new table for prereq or something
-#need to fix the foreign key for prerequisites
+	
 CREATE TABLE Courses(
 	majorID CHAR(3),
 	cid CHAR(3),
@@ -63,11 +61,22 @@ CREATE TABLE Courses(
 	prereqMajorID CHAR(3),
 	prereqCID CHAR(3),
 	PRIMARY KEY(majorID, cid, secNum, semesterID, year),
-	KEY(cid, secNum, semesterID, year),
+	KEY (cid, secNum, semesterID, year),
 	FOREIGN KEY(bldCode, roomID) REFERENCES Classrooms(bldCode, roomID),
 	FOREIGN KEY(majorID) REFERENCES Majors(majorID),
 	FOREIGN KEY(profID) REFERENCES Users(ruid),
-	FOREIGN KEY(prereqMajorID, prereqCID) REFERENCES prerequisites(prereqMajorID, prereqCID)
+	FOREIGN KEY(prereqMajorID, prereqCID) REFERENCES prereq(majorID, cid)
+);
+
+CREATE TABLE prereq (
+	majorid CHAR(3),
+	cid CHAR(3),
+	ruid CHAR(9),
+	PRIMARY KEY(ruid, cid),
+	KEY (majorid, cid),
+	FOREIGN KEY (majorID) REFERENCES Majors(majorID),
+	FOREIGN KEY (ruid) REFERENCES Students (ruid),
+	FOREIGN KEY (cid) REFERENCES Courses (cid)
 );
 
 CREATE TABLE Transcript(
@@ -78,8 +87,8 @@ CREATE TABLE Transcript(
 	semesterID CHAR(2),
 	year CHAR(4),
 	enrolled CHAR(5),
-	grad CHAR(5) DEFAULT NULL,
-	PRIMARY KEY(ruid, majorID, cid), #I think majorID should be in the key
+	grad CHAR(5) DEFAULT NULL, 
+	PRIMARY KEY(ruid, cid, semesterID, year, majorid), 
 	FOREIGN KEY(ruid) REFERENCES Students(ruid)
 		ON DELETE NO ACTION
 		ON UPDATE NO ACTION,
@@ -87,28 +96,6 @@ CREATE TABLE Transcript(
 		ON DELETE NO ACTION
 		ON UPDATE NO ACTION,
 	FOREIGN KEY(majorID) REFERENCES Majors(majorID)
-		ON DELETE NO ACTION
-		ON UPDATE NO ACTION
-);
-
-#What does this table do? Students don't register...
-CREATE TABLE Register(
-	ruid CHAR(9),
-	registerTime DATETIME,
-	majorID CHAR(3),
-	cid CHAR(3),
-	secNum CHAR(2),
-	semesterID CHAR(2),
-	year CHAR(4),
-	spn CHAR(5) DEFAULT NULL,
-	PRIMARY KEY(ruid, majorID, cid, secNum, semesterID),
-	FOREIGN KEY(ruid) REFERENCES Students(ruid)
-		ON DELETE NO ACTION
-		ON UPDATE NO ACTION,
-	FOREIGN KEY(majorID) REFERENCES Majors(majorID)
-		ON DELETE NO ACTION
-		ON UPDATE NO ACTION,
-	FOREIGN KEY(cid, secNum, semesterID, year) REFERENCES Courses(cid, secNum, semesterID, year)
 		ON DELETE NO ACTION
 		ON UPDATE NO ACTION
 );
@@ -158,26 +145,6 @@ CREATE TABLE Request(
 		ON UPDATE NO ACTION
 );
 
-CREATE TABLE RequestTest(
-	majorID CHAR(3),
-	cid CHAR(3),
-	secNum CHAR(2),
-	netid VARCHAR(15),
-	status CHAR(20),
-	reason CHAR(20),
-	response CHAR(20) DEFAULT NULL,
-	PRIMARY KEY(netid, majorID, cid, secNum, semesterID, year),
-	FOREIGN KEY(majorID) REFERENCES Majors(majorID)
-		ON DELETE NO ACTION
-		ON UPDATE NO ACTION,
-	FOREIGN KEY(cid, secNum, semesterID, year) REFERENCES Courses(cid, secNum, semesterID, year)
-		ON DELETE NO ACTION
-		ON UPDATE NO ACTION,
-	FOREIGN KEY(netid) REFERENCES Users(netid)
-		ON DELETE NO ACTION
-		ON UPDATE NO ACTION
-);
-
 CREATE TABLE spns(
 	majorID CHAR(3),
 	cid CHAR(3),
@@ -191,18 +158,7 @@ CREATE TABLE spns(
 		ON UPDATE NO ACTION,
 	FOREIGN KEY(cid, secNum, semesterID, year) REFERENCES Courses(cid, secNum, semesterID, year)
 		ON DELETE NO ACTION
-		ON UPDATE NO ACTIOn
-);
-
-CREATE TABLE prerequisites(
-	majorID CHAR(3),
-	cid CHAR(3),
-	ruid varchar(9)
-	PRIMARY KEY(ruid),
-	KEY(ruid, majorID, CID),
-	FOREIGN KEY(majorID) REFERENCES Majors(majorID),
-	FOREIGN KEY(CID) REFERENCES courses(cid),
-	FOREIGN KEY(ruid) REFERENCES Students(ruid)
+		ON UPDATE NO ACTION
 );
 
 delimiter //
