@@ -30,6 +30,7 @@ CREATE TABLE Students(
 	netid VARCHAR(15),
 	name VARCHAR(15),
 	majorID CHAR(3),
+	email VARCH(25),
 	PRIMARY KEY(ruid),
 	KEY(ruid),
 	FOREIGN KEY(ruid) REFERENCES Users(ruid)
