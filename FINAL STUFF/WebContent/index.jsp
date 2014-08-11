@@ -59,9 +59,11 @@
 		</table>	
 		<center>
 			<p>
+			<a href="signupIndex.jsp">Need an account? Sign up here!</a>
+			<br>
+			<br>
 			<input type="submit" value="submit"/>
 			<br>
-			<a href="signupIndex.jsp">Need an account? Sign up here!</a><br>
 			</p>
 		</center>
 	</form>	

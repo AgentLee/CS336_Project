@@ -75,8 +75,8 @@ CREATE TABLE Courses(
 	prereqMajorID CHAR(3),
 	prereqCID CHAR(3),
 	preCredits INTEGER,
-	PRIMARY KEY(majorID, cid, secNum, semesterID, year),
-	KEY (cid, secNum, semesterID, year),
+	PRIMARY KEY(majorID, secnum, cid, semesterID, year, prereqMajorID, prereqCID),
+	KEY (cid, secNum, semesterID, year, prereqMajorID, prereqCID),
 	FOREIGN KEY(bldCode, roomID) REFERENCES Classrooms(bldCode, roomID),
 	FOREIGN KEY(majorID) REFERENCES Majors(majorID),
 	FOREIGN KEY(profID) REFERENCES Users(ruid),
@@ -113,9 +113,11 @@ CREATE TABLE Recitation(
 	semesterID CHAR(2),
 	year CHAR(4),
 	maxEnroll INTEGER,
-	time CHAR(4),
-	roomID CHAR(3),
+	day CHAR(5),
+	startTime TIME,
+	endTime TIME,
 	bldCode CHAR(3),
+	roomID CHAR(3),
 	PRIMARY KEY(majorID, cid, secNum, semesterID, year),
 	FOREIGN KEY(majorID) REFERENCES Majors(majorID)
 		ON DELETE NO ACTION
@@ -167,7 +169,7 @@ CREATE TABLE spns(
 		ON DELETE NO ACTION
 		ON UPDATE NO ACTION
 );
-
+/*
 CREATE TABLE profMessage(
 	ruid CHAR(9),
 	profID CHAR(9),
@@ -180,13 +182,14 @@ CREATE TABLE profMessage(
 	FOREIGN KEY(profID) REFERENCES Users(ruid),
 	FOREIGN KEY(majorid, cid, secnum) REFERENCES Courses(majorid, cid, secnum)
 );
-
+*/
 INSERT INTO usertypeid VALUES(1, 'Student');
 INSERT INTO usertypeid VALUES(2, 'Professor');
 INSERT INTO usertypeid VALUES(3, 'Administrator');
 
 INSERT INTO majors VALUES('198', 'Computer Science');
 INSERT INTO majors VALUES('640', 'MATHEMATICS');
+INSERT INTO majors VALUES('-', '-');
 
 INSERT INTO classrooms VALUES('SEC', 60, '208');
 INSERT INTO classrooms VALUES('LSH', 200, 'AUD');
@@ -199,6 +202,7 @@ INSERT INTO users VALUES('345678912', 'admin root', 'adminroot', 'root', 3);
 
 INSERT INTO students VALUES('123456789', 'root', 'root root', '198', 'root@rutgers.edu', 65);
 
+INSERT INTO prereq VALUES('-', '-');
 INSERT INTO prereq VALUES('198', '111');
 INSERT INTO prereq VALUES('198', '112');
 INSERT INTO prereq VALUES('198', '205');
@@ -208,9 +212,20 @@ INSERT INTO prereq VALUES('198', '214');
 INSERT INTO prereq VALUES('198', '314');
 INSERT INTO prereq VALUES('198', '336');
 
-INSERT INTO courses VALUES('198', '111', '01', 4, 'FA', '2014', '234567891', 'ENG', '111', 200, '2014-09-21', null, null, null);
-INSERT INTO courses VALUES('198', '111', '02', 4, 'FA', '2014', '234567891', 'ENG', '111', 200, '2014-09-21', null, null, null);
-INSERT INTO courses VALUES('198', '111', '03', 4, 'FA', '2014', '234567891', 'ENG', '111', 200, '2014-09-21', null, null, null);
-INSERT INTO courses VALUES('198', '111', '04', 4, 'FA', '2014', '234567891', 'ENG', '111', 200, '2014-09-21', null, null, null);
+INSERT INTO courses VALUES('198', '111', '01', 4, 'FA', '2014', '234567891', 'ENG', '111', 200, '2014-09-21', '-', '-', 0);
+INSERT INTO courses VALUES('198', '111', '02', 4, 'FA', '2014', '234567891', 'ENG', '111', 200, '2014-09-21', '-', '-', 0);
+INSERT INTO courses VALUES('198', '111', '03', 4, 'FA', '2014', '234567891', 'ENG', '111', 200, '2014-09-21', '-', '-', 0);
+INSERT INTO courses VALUES('198', '111', '04', 4, 'FA', '2014', '234567891', 'ENG', '111', 200, '2014-09-21', '-', '-', 0);
 
+INSERT INTO courses VALUES('198', '112', '01', 4, 'FA', '2014', '234567891', 'LSH', 'AUD', 200, '2014-09-21', '198', '111', 4);
+INSERT INTO courses VALUES('198', '112', '02', 4, 'FA', '2014', '234567891', 'LSH', 'AUD', 200, '2014-09-21', '198', '111', 4);
+INSERT INTO courses VALUES('198', '112', '03', 4, 'FA', '2014', '234567891', 'LSH', 'AUD', 200, '2014-09-21', '198', '111', 4);
+INSERT INTO courses VALUES('198', '112', '04', 4, 'FA', '2014', '234567891', 'LSH', 'AUD', 200, '2014-09-21', '198', '111', 4);
 
+INSERT INTO courses VALUES('198', '205', '01', 4, 'FA', '2014', '234567891', 'SEC', '208', 60, '2014-09-21', '198', '112', 4);
+INSERT INTO courses VALUES('198', '205', '02', 4, 'FA', '2014', '234567891', 'SEC', '208', 60, '2014-09-21', '198', '112', 4);
+
+INSERT INTO courses VALUES('198', '336', '01', 4, 'FA', '2014', '234567891', 'SEC', '208', 60, '2014-09-21', '198', '112', 4);
+INSERT INTO courses VALUES('198', '336', '01', 4, 'FA', '2014', '234567891', 'SEC', '208', 60, '2014-09-21', '198', '205', 4);
+
+INSERT INTO recitation VALUES('198', '111', '01', 'FA', '2014', 50, 'TTH', '10:20:00', '11:30:00', 'ENG', '111');
