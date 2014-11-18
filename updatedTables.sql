@@ -60,9 +60,6 @@ CREATE TABLE Courses(
 	roomID char(3),
 	maxEnroll INTEGER,
 	deadline DATETIME,
-	prereqMajorID CHAR(3),
-	prereqCID CHAR(3),
-	preCredits INTEGER,
 	PRIMARY KEY(majorID, cid, secNum, semesterID, year),
 	KEY (cid, secNum, semesterID, year),
 	FOREIGN KEY(bldCode, roomID) REFERENCES Classrooms(bldCode, roomID),
@@ -75,11 +72,8 @@ CREATE TABLE prereq (
 	majorid CHAR(3),
 	cid CHAR(3),
 	ruid CHAR(9),
-	PRIMARY KEY(ruid, cid),
-	KEY (majorid, cid),
-	FOREIGN KEY (majorID) REFERENCES Majors(majorID),
-	FOREIGN KEY (ruid) REFERENCES Students (ruid),
-	FOREIGN KEY (cid) REFERENCES Courses (cid)
+	PRIMARY KEY(majorid, cid),
+	FOREIGN KEY (majorID,cid) REFERENCES Courses(majorID,cid)
 );
 
 CREATE TABLE Transcript(
